@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@latest/babel.min.js"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+
+        const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+
+        const App = (props) => {
+            const catsData = [
+                { name: 'Whiskers', age: 3, color: 'Gray and White' },
+                { name: 'Luna', age: 2, color: 'Black' },
+                { name: 'Simba', age: 4, color: 'Orange' },
+                { name: 'Midnight', age: 1, color: 'Black' },
+                { name: 'Bella', age: 5, color: 'Tabby' },
+                { name: 'Gizmo', age: 2, color: 'Gray' },
+                { name: 'Nala', age: 3, color: 'Beige' },
+                { name: 'Oliver', age: 4, color: 'White and Brown' },
+                { name: 'Cleo', age: 2, color: 'Calico' },
+                { name: 'Max', age: 6, color: 'Tabby' }
+            ];
+
+            if(!Array.isArray(catsData) || catsData.length < 1) return (<p>No cats</p>)
+
+            const reversedName = catsData.map(cat => ({...cat, name: cat.name.split("").reverse().join("")}))
+
+            return (
+                <div>
+                    {reversedName.map((cat, i) => <p key = {i}>{cat.name.slice(0, -1)}<span style={{color: `#${genRanHex(6)}`}}>{cat.name.slice(-1)}</span> of age : {cat.age}</p>)}
+                </div>
+            )
+        }
+
+        const handler = () => {
+            root.render(
+                <App />
+            );
+        }
+
+        handler()
+    </script>
+</body>
+</html>
