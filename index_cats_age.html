@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello React</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- babel => compilation du JSX -->
+    <script src="https://unpkg.com/babel-standalone@latest/babel.min.js"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+
+        const App = (props) => {
+            const catsData = [
+                { name: 'Whiskers', age: 3, color: 'Gray and White' },
+                { name: 'Luna', age: 2, color: 'Black' },
+                { name: 'Simba', age: 4, color: 'Orange' },
+                { name: 'Midnight', age: 1, color: 'Black' },
+                { name: 'Bella', age: 5, color: 'Tabby' },
+                { name: 'Gizmo', age: 2, color: 'Gray' },
+                { name: 'Nala', age: 3, color: 'Beige' },
+                { name: 'Oliver', age: 4, color: 'White and Brown' },
+                { name: 'Cleo', age: 2, color: 'Calico' },
+                { name: 'Max', age: 6, color: 'Tabby' }
+            ];
+
+            if(!Array.isArray(catsData) || catsData.length < 1) return (<p>No cats</p>)
+
+            const ageExtremity = catsData.reduce((acc, current) => {
+                if(acc.max.age < current.age) acc.max = current;
+                if(acc.min.age > current.age) acc.min = current;
+                return acc;
+            }, {
+                max: catsData.at(0),
+                min: catsData.at(0)
+            })
+
+            return (
+                <div>
+                    <p>the oldest cat is : {ageExtremity.max.name} with an age of {ageExtremity.max.age}</p>
+                    <p>the youngest cat is : {ageExtremity.min.name} with an age of {ageExtremity.min.age}</p>
+                </div>
+            )
+        }
+
+        const handler = () => {
+            root.render(
+                <App />
+            );
+        }
+
+        handler()
+    </script>
+</body>
+</html>
