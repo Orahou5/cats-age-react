@@ -20,16 +20,16 @@
 
         const App = (props) => {
             const catsData = [
-                { name: 'Whiskers', age: 3, color: 'Gray and White' },
-                { name: 'Luna', age: 2, color: 'Black' },
-                { name: 'Simba', age: 4, color: 'Orange' },
-                { name: 'Midnight', age: 1, color: 'Black' },
-                { name: 'Bella', age: 5, color: 'Tabby' },
-                { name: 'Gizmo', age: 2, color: 'Gray' },
-                { name: 'Nala', age: 3, color: 'Beige' },
-                { name: 'Oliver', age: 4, color: 'White and Brown' },
-                { name: 'Cleo', age: 2, color: 'Calico' },
-                { name: 'Max', age: 6, color: 'Tabby' }
+                { name: 'Whiskers', age: 3, color: 'Gray and White', hex: "#dae1ed" },
+                { name: 'Luna', age: 2, color: 'Black', hex: "#880699" },
+                { name: 'Simba', age: 4, color: 'Orange', hex: "#e67e17" },
+                { name: 'Midnight', age: 1, color: 'Black', hex: "#042c61" },
+                { name: 'Bella', age: 5, color: 'Tabby', hex: "#69340c" },
+                { name: 'Gizmo', age: 2, color: 'Gray', hex: "#696969" },
+                { name: 'Nala', age: 3, color: 'Beige', hex: "#deb564" },
+                { name: 'Oliver', age: 4, color: 'White and Brown', hex: "#f2e2c2" },
+                { name: 'Cleo', age: 2, color: 'Calico', hex: "#a64208" },
+                { name: 'Max', age: 6, color: 'Tabby', hex: "#bd5d3a" }
             ];
 
             if(!Array.isArray(catsData) || catsData.length < 1) return (<p>No cats</p>)
@@ -38,7 +38,7 @@
 
             return (
                 <div>
-                    {reversedName.map((cat, i) => <p key = {i}>{cat.name.slice(0, -1)}<span style={{color: `#${genRanHex(6)}`}}>{cat.name.slice(-1)}</span> of age : {cat.age}</p>)}
+                    {reversedName.map((cat, i) => <p key = {i}>{cat.name.slice(0, -1)}<span style={{color: `${cat.hex || ("#" + genRanHex(6))}`}}>{cat.name.slice(-1)}</span> of age : {cat.age}</p>)}
                 </div>
             )
         }
