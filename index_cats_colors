@@ -38,7 +38,18 @@
 
             return (
                 <div>
-                    {reversedName.map((cat, i) => <p key = {i}>{cat.name.slice(0, -1)}<span style={{color: `${cat.hex || ("#" + genRanHex(6))}`}}>{cat.name.slice(-1)}</span> of age : {cat.age}</p>)}
+                    {
+                        reversedName.map((cat, i) => {
+                            const colorStyle = {color: `${cat.hex || ("#" + genRanHex(6))}`}
+                            const nameLast = <span style={colorStyle}>{cat.name.slice(-1)}</span>
+                            return (
+                                <p key = {i}>
+                                    {cat.name.slice(0, -1)}{nameLast} of age : {cat.age}
+                                </p>
+                            )
+                            
+                        }) 
+                    }
                 </div>
             )
         }
