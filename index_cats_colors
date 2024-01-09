@@ -54,13 +54,10 @@
             )
         }
 
-        const handler = () => {
-            root.render(
-                <App />
-            );
-        }
+        root.render(
+            <App />
+        );
 
-        handler()
     </script>
 </body>
 </html>
